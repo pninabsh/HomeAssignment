@@ -1,30 +1,35 @@
-import { Menu, Icon, Segment, Container } from 'semantic-ui-react'
+import React from 'react';
+import { Menu, Segment, Container } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 function MenuComp() {
-    const [activeItem, setActiveItem] = useState('home');
-    return (
-        <Segment inverted>
-            <Container>
-      <Menu inverted>
-        <Menu.Item
-          name='BeerBuddy'
-        />
-        <Menu.Item
-          name='Browse Beers'
-          active={activeItem === 'home'}
-        />
-        <Menu.Item
-          name='Favorite Beers'          
-          active={activeItem === 'messages'}
-        >
-            Favorite Beers   
-            <Icon name='favorite'/>
-        </Menu.Item>
-      </Menu>
-      </Container>
-      </Segment>
-    );
-  }
+	const [activeItem, setActiveItem] = useState('Browse Beers');
+	return (
+		<Segment inverted>
+			<Container>
+				<Menu inverted>
+					<Menu.Item
+						name='BeerBuddy'
+					/>
+					<Menu.Item
+						as={Link}
+						to='/'
+						name='Beers'
+						active={activeItem === 'Beers'}
+						onClick={() => setActiveItem('Browse Beers')}
+					/>
+					<Menu.Item
+						as={Link}
+						to='/Favorites'
+						name='Favorites'          
+						active={activeItem === 'Favorites'}
+						onClick={() => setActiveItem('Favorites')}
+					/>
+				</Menu>
+			</Container>
+		</Segment>
+	);
+}
   
-  export default MenuComp;
+export default MenuComp;
