@@ -6,6 +6,9 @@ import MenuComp from './MenuComp';
 import Background from './beer-background.jpg';
 //import BrowseBeers from './BrowseBeers';
 import FavoriteBeers from './FavoriteBeers';
+import BeerDetails from './BeerDetails';
+import BeersGrid from './BeersGrid';
+//import { Menu } from 'semantic-ui-react';
 
 const appStyle = {
 	backgroundImage: `url(${Background})`,
@@ -23,10 +26,16 @@ function App() {
 			<Switch>
 				<div style={appStyle}>
 					<MenuComp />
+					<Route exact path='/'>
+						<BeersGrid />
+					</Route>					
+					<Route exact path='/beer/:id'>
+						<BeerDetails />
+					</Route>
+					<Route exact path='/Favorites'>
+						<FavoriteBeers />
+					</Route>
 				</div>
-				<Route exact path='/Favorites'>
-					<FavoriteBeers />
-				</Route>
 			</Switch>
 		</Router>
 	);

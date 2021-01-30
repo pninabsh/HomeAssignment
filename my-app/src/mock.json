@@ -1,0 +1,34 @@
+{
+    "beers": [
+        {
+           "id": 1,
+           "name":  "Buzz",
+           "tagline":"A Real Bitter Experience.",
+           "first_brewed":"09/2007",
+           "description":"A light, crisp and bitter IPA brewed with English and American hops. A small batch brewed only once.",
+           "image_url":"https://images.punkapi.com/v2/keg.png",
+           "food_pairing":[
+                "Spicy chicken tikka masala",
+                "Grilled chicken quesadilla",
+                "Caramel toffee cake"
+            ],
+            "brewers_tips":"The earthy and floral aromas from the hops can be overpowering. Drop a little Cascade in at the end of the boil to lift the profile with a bit of citrus.",
+            "contributed_by":"Sam Mason <samjbmason>"
+        },
+        {
+            "id": 5,
+           "name":  "Avery Brown Dredge",
+           "tagline":"Bloggers' Imperial Pilsner.",
+           "first_brewed":"02/2011",
+           "description":"An Imperial Pilsner in collaboration with beer writers. Tradition. Homage. Revolution. We wanted to showcase the awesome backbone of the Czech brewing tradition, the noble Saaz hop, and also tip our hats to the modern beers that rock our world, and the people who make them.",
+           "image_url":"https://images.punkapi.com/v2/5.png",
+           "food_pairing":[
+                "Vietnamese squid salad",
+                "Chargrilled corn on the cob with paprika butter",
+                "Strawberry and rhubarb pie"
+            ],
+            "brewers_tips":"Make sure you have a big enough yeast starter to ferment through the OG and lager successfully.",
+            "contributed_by":"Sam Mason <samjbmason>"
+        }
+    ]
+}

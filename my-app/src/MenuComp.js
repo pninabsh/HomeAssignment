@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Menu, Segment, Container } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 
 function MenuComp() {
-	const [activeItem, setActiveItem] = useState('Browse Beers');
+	const [activeItem, setActiveItem] = useState('Beers');
 	return (
 		<Segment inverted>
 			<Container>
