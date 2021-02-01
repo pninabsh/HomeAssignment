@@ -1,7 +1,12 @@
 const initialState = {
 	favorites: [],
-	offset: 1,
-	foodPairingFilter: ''
+	items : []
+};
+
+const checkIfItemInFavorites = function(id, favorites){
+	return favorites.some(function(item){
+		return item.id === id;
+	});
 };
 
 export default function appReducer(state = initialState, action){
@@ -9,22 +14,29 @@ export default function appReducer(state = initialState, action){
 	case 'ADD_TO_FAVORITES' :
 		return{
 			...state,
-			favorites: [...state.favorites, action.payload]
+			favorites: checkIfItemInFavorites(action.payload.id, state.favorites) ? state.favorites : [...state.favorites, action.payload]
+		};
+	case 'REMOVE_FROM_FAVORITES' :
+		return{
+			...state,
+			favorites: state.favorites.filter(function(item){
+				return item.id != action.payload.id;
+			})
 		};
 	case 'UPDATE_BEER_RANK' :
 		return{
 			...state,
 			favorites: state.favorites.map((favoriteItem) => favoriteItem.name == action.payload.name ? { name: action.payload.name, rank: action.payload.newRank } : favoriteItem)
 		};
-	case 'UPDATE_FOOD_PAIRING':
+	case 'UPDATE_ITEMS':
 		return{
 			...state,
-			foodPairingFilter: action.payload
+			items: action.payload
 		};
-	case 'UPDATE_OFFSET':
+	case 'RESET_FAVORITES':
 		return{
 			...state,
-			offset: action.payload
+			favorites : []
 		};
 	default:
 		return state;
