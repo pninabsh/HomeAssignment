@@ -1,10 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Grid, /*Container, Segment, Dimmer*/ 
-	//Segment,
-	Container} from 'semantic-ui-react';
+import { Grid, Container} from 'semantic-ui-react';
 import GridComp from './GridComp';
-
 
 function BeersGrid(props){
 	const { items } = props;

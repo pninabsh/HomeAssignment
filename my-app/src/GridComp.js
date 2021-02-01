@@ -12,7 +12,7 @@ const checkIfItemInFavorites = function(id, favorites){
 
 function GridComp(props){ 
 	const { beerItem, favorites, addToFavorites, removeFromFavorites } = props;
-	const color = checkIfItemInFavorites(beerItem.id, favorites) ? 'yellow' : 'white';
+	const color = beerItem && checkIfItemInFavorites(beerItem.id, favorites) ? 'yellow' : 'white';
 	return (
 		<div>
 			{beerItem && <Segment style={{height: '320px'}}>
