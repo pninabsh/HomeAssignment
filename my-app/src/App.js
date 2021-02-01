@@ -7,7 +7,8 @@ import Background from './beer-background.jpg';
 //import BrowseBeers from './BrowseBeers';
 import FavoriteBeers from './FavoriteBeers';
 import BeerDetails from './BeerDetails';
-import BeersGrid from './BeersGrid';
+import BrowseBeersPage from './BrowseBeersPage';
+//import GridComp from './GridComp';
 //import { Menu } from 'semantic-ui-react';
 
 const appStyle = {
@@ -27,7 +28,7 @@ function App() {
 				<div style={appStyle}>
 					<MenuComp />
 					<Route exact path='/'>
-						<BeersGrid />
+						<BrowseBeersPage />
 					</Route>					
 					<Route exact path='/beer/:id'>
 						<BeerDetails />

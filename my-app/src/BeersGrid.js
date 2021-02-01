@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Loader, Message, Grid, Image, /*Container, Segment, Dimmer*/ 
+import { Loader, Message, Grid, /*Container, Segment, Dimmer*/ 
 	//Segment,
 	Container} from 'semantic-ui-react';
+import GridComp from './GridComp';
 
-function BeersGrid(){
+
+function BeersGrid(props){
+	const { foodPairingFilter }  = props;
 	const [items, setBeerItems] = useState([]);
 	const [isLoaded, setIsLoaded] = useState(false);
 	const [isError, setError] = useState(null);
 
 	useEffect(() => {
 		const fetchData = () => {
-			return fetch('https://api.punkapi.com/v2/beers?page=1&per_page=8')
+			const foodFilterParam = foodPairingFilter == '' ? foodPairingFilter : `&food=${foodPairingFilter}`;
+			return fetch(`https://api.punkapi.com/v2/beers?page=1&per_page=10${foodFilterParam}`)
 				.then(data => data.json())
 				.then(items => {
 					setBeerItems(items);
@@ -20,7 +24,7 @@ function BeersGrid(){
 				.catch(error => setError(error));
 		};
 		fetchData();
-	},[]);
+	},[foodPairingFilter]);
 	console.log(items);
 	if(!isLoaded){
 		return (
@@ -37,35 +41,41 @@ function BeersGrid(){
 	}
 
 	return (
-		<Container>
-			<Grid columns={4} relaxed divided textAlign= "center" verticalAlign="middle">
-				<Grid.Row>
-					<Grid.Column>
-						<Image size='small' src={items[0].image_url} />
+		<Container style={{height: '100%'}}>
+			<Grid columns={5} textAlign= "center" verticalAlign="middle">
+				<Grid.Row stretched>
+					<Grid.Column stretched>
+						<GridComp beerItem={items[0]}/>
 					</Grid.Column>
-					<Grid.Column>
-						<Image size='small' src={items[1].image_url} />
+					<Grid.Column stretched>
+						<GridComp beerItem={items[1]}/>
 					</Grid.Column>
-					<Grid.Column>
-						<Image size='small' src={items[2].image_url} />
+					<Grid.Column  stretched>
+						<GridComp beerItem={items[2]}/>
 					</Grid.Column>
-					<Grid.Column>
-						<Image size='small' src={items[3].image_url} />
+					<Grid.Column  stretched>
+						<GridComp beerItem={items[3]}/>
+					</Grid.Column>
+					<Grid.Column  stretched>
+						<GridComp beerItem={items[4]}/>
 					</Grid.Column>
 				</Grid.Row>
 
-				<Grid.Row>
-					<Grid.Column>
-						<Image size='small' src={items[4].image_url} />
+				<Grid.Row stretched>
+					<Grid.Column  stretched>
+						<GridComp beerItem={items[5]}/>
 					</Grid.Column>
-					<Grid.Column>
-						<Image size='small' src={items[5].image_url} />
+					<Grid.Column  stretched>
+						<GridComp beerItem={items[6]}/>
 					</Grid.Column>
-					<Grid.Column>
-						<Image size='small' src={items[6].image_url} />
+					<Grid.Column  stretched>
+						<GridComp beerItem={items[7]}/>
 					</Grid.Column>
-					<Grid.Column>
-						<Image size='small' src={items[7].image_url} />
+					<Grid.Column  stretched>
+						<GridComp beerItem={items[8]}/>
+					</Grid.Column>
+					<Grid.Column  stretched>
+						<GridComp beerItem={items[9]}/>
 					</Grid.Column>
 				</Grid.Row>
 			</Grid>
@@ -73,4 +83,9 @@ function BeersGrid(){
 	);
 }
 
-export default connect()(BeersGrid);
+const mapStateToProps = (state) => {
+	const { foodPairingFilter } = state;
+	return { foodPairingFilter };
+};
+
+export default connect(mapStateToProps)(BeersGrid);

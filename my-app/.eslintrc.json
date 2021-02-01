@@ -33,6 +33,10 @@
         "semi": [
             "error",
             "always"
-        ]
+        ],
+        "react/prop-types": [
+            "off",
+            { "ignore": "ignore", "customValidators": "customValidator" }
+          ]
     }
 }
