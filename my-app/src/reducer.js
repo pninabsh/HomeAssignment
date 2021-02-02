@@ -1,6 +1,7 @@
 const initialState = {
 	favorites: [],
-	items : []
+	items : [],
+	offset: 1
 };
 
 const checkIfItemInFavorites = function(id, favorites){
@@ -22,6 +23,11 @@ export default function appReducer(state = initialState, action){
 			favorites: state.favorites.filter(function(item){
 				return item.id != action.payload.id;
 			})
+		};
+	case 'UPDATE_OFFSET':
+		return{
+			...state,
+			offset: action.payload
 		};
 	case 'UPDATE_BEER_RANK' :
 		return{

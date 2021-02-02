@@ -3,45 +3,24 @@ import { connect } from 'react-redux';
 import { Grid, Container} from 'semantic-ui-react';
 import GridComp from './GridComp';
 
-function BeersGrid(props){
-	const { items } = props;
-	return (
-		<Container style={{height: '100%'}}>
-			<Grid columns={5} textAlign= "center" verticalAlign="middle">
-				<Grid.Row stretched>
-					<Grid.Column stretched>
-						<GridComp beerItem={items[0]}/>
-					</Grid.Column>
-					<Grid.Column stretched>
-						<GridComp beerItem={items[1]}/>
-					</Grid.Column>
-					<Grid.Column  stretched>
-						<GridComp beerItem={items[2]}/>
-					</Grid.Column>
-					<Grid.Column  stretched>
-						<GridComp beerItem={items[3]}/>
-					</Grid.Column>
-					<Grid.Column  stretched>
-						<GridComp beerItem={items[4]}/>
-					</Grid.Column>
-				</Grid.Row>
+const columnsArray = (items, startIndex) => items.slice(startIndex, startIndex + 5).map(item => 
+	<Grid.Column key={item.id}>
+		<GridComp beerItem={item} />		
+	</Grid.Column>
+);
 
-				<Grid.Row stretched>
-					<Grid.Column  stretched>
-						<GridComp beerItem={items[5]}/>
-					</Grid.Column>
-					<Grid.Column  stretched>
-						<GridComp beerItem={items[6]}/>
-					</Grid.Column>
-					<Grid.Column  stretched>
-						<GridComp beerItem={items[7]}/>
-					</Grid.Column>
-					<Grid.Column  stretched>
-						<GridComp beerItem={items[8]}/>
-					</Grid.Column>
-					<Grid.Column  stretched>
-						<GridComp beerItem={items[9]}/>
-					</Grid.Column>
+
+function BeersGrid(props){
+	const { items, favorites, isFavoritesPage, offset } = props;
+	const itemsToShow = isFavoritesPage ? favorites.slice((offset-1) * 10, (offset-1) * 10 + 10) : items;
+	return (
+		<Container>
+			<Grid columns={5}>
+				<Grid.Row>
+					{columnsArray(itemsToShow, 0)}
+				</Grid.Row>
+				<Grid.Row>
+					{columnsArray(itemsToShow, 5)}
 				</Grid.Row>
 			</Grid>
 		</Container>
@@ -49,8 +28,8 @@ function BeersGrid(props){
 }
 
 const mapStateToProps = (state) => {
-	const { items } = state;
-	return { items };
+	const { items, favorites, offset } = state;
+	return { items, favorites, offset };
 };
 
 export default connect(mapStateToProps)(BeersGrid);

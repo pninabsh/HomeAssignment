@@ -5,7 +5,7 @@ import 'semantic-ui-css/semantic.min.css';
 import MenuComp from './MenuComp';
 import Background from './beer-background.jpg';
 //import BrowseBeers from './BrowseBeers';
-import FavoriteBeers from './FavoriteBeers';
+import FavoritesPage from './FavoritesPage';
 import BeerDetails from './BeerDetails';
 import BrowseBeersPage from './BrowseBeersPage';
 //import GridComp from './GridComp';
@@ -34,7 +34,7 @@ function App() {
 						<BeerDetails />
 					</Route>
 					<Route exact path='/Favorites'>
-						<FavoriteBeers />
+						<FavoritesPage />
 					</Route>
 				</div>
 			</Switch>
