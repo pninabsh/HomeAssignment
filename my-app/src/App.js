@@ -24,7 +24,6 @@ function App() {
 			<div style={appStyle}>
 				<MenuComp />
 				<Route exact path='/' component={BrowseBeersPage} />					
-				<Route exact path='/beer/:id' component={BeerDetails} />
 				<Route exact path='/Favorites' component={FavoritesPage} />
 			</div>
 		</Router>

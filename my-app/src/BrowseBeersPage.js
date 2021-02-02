@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import { Pagination, Input, Container, Loader, Message, Button, Confirm, Header } from 'semantic-ui-react';
 import BeersGrid from './BeersGrid';
 
-function BrowseBeersPage({updateItems, isFavoritesPage, ResetFavorites, 
-	items, favorites}){
+function BrowseBeersPage({updateItems, isFavoritesPage, ResetFavorites}){
 	const [offset, setOffset] = useState(1);
 	const [favoritesOffset, setFavoritesOffset] = useState(1);
 	const [filter, setFilter] = useState('');
@@ -46,11 +45,10 @@ function BrowseBeersPage({updateItems, isFavoritesPage, ResetFavorites,
 		);
 	}
 
-	const itemsLength = isFavoritesPage? favorites.length : items.length;
 	return (
 		<Container>
 			{isFavoritesPage && <Header inverted as='h2' textAlign='center'>Favorite Beers</Header>}
-			{itemsLength > 0 && <Container textAlign='center'>
+			<Container textAlign='center'>
 				{!isFavoritesPage && <Input
 					action={{
 						color: 'teal',
@@ -71,19 +69,14 @@ function BrowseBeersPage({updateItems, isFavoritesPage, ResetFavorites,
 				<Container style={{position: 'absolute', top: '10'}}>
 					<Pagination totalPages={10} defaultActivePage={1} onPageChange={(_, data) => isFavoritesPage? setFavoritesOffset(data.activePage) : setOffset(data.activePage)}/>
 				</Container>
-			</Container>}
+			</Container>
 		</Container>
 	);
 }
-
-const mapStateToProps = (state) => {
-	const { offset, items, favorites } = state;
-	return { offset, items, favorites };
-};
 
 const mapDispatchToProps = dispatch => ({
 	updateItems: (items) => dispatch({type: 'UPDATE_ITEMS', payload: items}),
 	ResetFavorites: () => dispatch({type:'RESET_FAVORITES'})	
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(BrowseBeersPage);
+export default connect(null, mapDispatchToProps)(BrowseBeersPage);
