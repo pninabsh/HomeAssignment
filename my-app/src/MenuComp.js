@@ -16,7 +16,7 @@ function MenuComp() {
 						to='/'
 						name='Beers'
 						active={activeItem === 'Beers'}
-						onClick={() => setActiveItem('Browse Beers')}
+						onClick={() => setActiveItem('Beers')}
 					/>
 					<Menu.Item
 						as={Link}

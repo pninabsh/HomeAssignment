@@ -1,13 +1,16 @@
 const initialState = {
 	favorites: [],
 	items : [],
-	offset: 1
 };
 
 const checkIfItemInFavorites = function(id, favorites){
 	return favorites.some(function(item){
 		return item.id === id;
 	});
+};
+
+const getItem = ({item, rank}) =>  {
+	return { id: item.id, name: item.name, image_url: item.image_url, rank:rank };
 };
 
 export default function appReducer(state = initialState, action){
@@ -24,15 +27,10 @@ export default function appReducer(state = initialState, action){
 				return item.id != action.payload.id;
 			})
 		};
-	case 'UPDATE_OFFSET':
-		return{
-			...state,
-			offset: action.payload
-		};
 	case 'UPDATE_BEER_RANK' :
 		return{
 			...state,
-			favorites: state.favorites.map((favoriteItem) => favoriteItem.name == action.payload.name ? { name: action.payload.name, rank: action.payload.newRank } : favoriteItem)
+			favorites: state.favorites.map((favoriteItem) => favoriteItem.id == action.payload.item.id ? getItem(action.payload) : favoriteItem)
 		};
 	case 'UPDATE_ITEMS':
 		return{

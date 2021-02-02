@@ -1,15 +1,12 @@
 import React from 'react';
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
+import { Route, BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
 import 'semantic-ui-css/semantic.min.css';
 import MenuComp from './MenuComp';
 import Background from './beer-background.jpg';
-//import BrowseBeers from './BrowseBeers';
 import FavoritesPage from './FavoritesPage';
 import BeerDetails from './BeerDetails';
 import BrowseBeersPage from './BrowseBeersPage';
-//import GridComp from './GridComp';
-//import { Menu } from 'semantic-ui-react';
 
 const appStyle = {
 	backgroundImage: `url(${Background})`,
@@ -24,20 +21,12 @@ const appStyle = {
 function App() {
 	return (
 		<Router>
-			<Switch>
-				<div style={appStyle}>
-					<MenuComp />
-					<Route exact path='/'>
-						<BrowseBeersPage />
-					</Route>					
-					<Route exact path='/beer/:id'>
-						<BeerDetails />
-					</Route>
-					<Route exact path='/Favorites'>
-						<FavoritesPage />
-					</Route>
-				</div>
-			</Switch>
+			<div style={appStyle}>
+				<MenuComp />
+				<Route exact path='/' component={BrowseBeersPage} />					
+				<Route exact path='/beer/:id' component={BeerDetails} />
+				<Route exact path='/Favorites' component={FavoritesPage} />
+			</div>
 		</Router>
 	);
 }
