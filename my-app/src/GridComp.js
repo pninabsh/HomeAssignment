@@ -25,19 +25,33 @@ function GridComp(props){
 	const color = beerItem && checkIfItemInFavorites(beerItem.id, favorites) ? 'yellow' : 'white';
 	return (
 		<div>
-			{beerItem && <Card>
-				<Card.Content>
+			{beerItem && 
 					<Modal
 						onClose={() => setOpen(false)}
 						onOpen={() => setOpen(true)}
 						open={open}
-						trigger={<Button
-							style={{ backgroundColor: 'Transparent', left: '70%', top: '20%', position:'absolute' }}
-							circular
-							onClick={() => setOpen(true)}
-						>
-							<Icon name='info' size='large'/>
-						</Button>}>
+						trigger={<Card>
+							<Card.Content>
+								<Button
+									style={{ backgroundColor: 'Transparent', left: '70%', position:'absolute' }}
+									circular
+									onClick={() => color === 'yellow' ? removeFromFavorites(beerItem) : addToFavorites(beerItem)}
+									icon='start outline'
+								>
+									<Icon name='star' size='large' color={color}/>
+								</Button>
+								{isFavoritesPage &&	<Dropdown
+									style={{ left: '5%', position:'absolute' }}
+									compact
+									options={getOptions(5, '')}
+									text={beerItem['rank']}
+									onChange={(e) => updateRank(beerItem, e.target.innerText)}
+									selection />}
+								<Image size='tiny' centered src={beerItem.image_url? beerItem.image_url : defaultImage} style={{height: '220px'}}/> 
+								<Card.Header>{beerItem.name}</Card.Header>
+							</Card.Content>
+						</Card>
+						}>
 						<Modal.Header>
 							{beerItem.name} Beer
 							<Icon name='bar' />
@@ -53,25 +67,7 @@ function GridComp(props){
 							</Button>
 						</Modal.Actions>
 					</Modal>
-					<Button
-						style={{ backgroundColor: 'Transparent', left: '70%', position:'absolute' }}
-						circular
-						onClick={() => color === 'yellow' ? removeFromFavorites(beerItem) : addToFavorites(beerItem)}
-						icon='start outline'
-					>
-						<Icon name='star' size='large' color={color}/>
-					</Button>
-					{isFavoritesPage &&	<Dropdown
-						style={{ left: '5%', position:'absolute' }}
-						compact
-						options={getOptions(5, '')}
-						text={beerItem['rank']}
-						onChange={(e) => updateRank(beerItem, e.target.innerText)}
-						selection />}
-					<Image size='tiny' centered src={beerItem.image_url? beerItem.image_url : defaultImage} style={{height: '220px'}}/> 
-					<Card.Header>{beerItem.name}</Card.Header>
-				</Card.Content>
-			</Card>}
+			}
 		</div>
 	);
 }

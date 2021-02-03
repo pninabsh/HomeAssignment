@@ -5,7 +5,6 @@ import 'semantic-ui-css/semantic.min.css';
 import MenuComp from './MenuComp';
 import Background from './beer-background.jpg';
 import FavoritesPage from './FavoritesPage';
-import BeerDetails from './BeerDetails';
 import BrowseBeersPage from './BrowseBeersPage';
 
 const appStyle = {

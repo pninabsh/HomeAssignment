@@ -3,7 +3,7 @@ import { Menu, Segment, Container } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 function MenuComp() {
-	const [activeItem, setActiveItem] = useState('');
+	const [activeItem, setActiveItem] = useState('Beers');
 	return (
 		<Segment inverted>
 			<Container>
